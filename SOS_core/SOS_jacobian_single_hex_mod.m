@@ -1,4 +1,8 @@
 %{
+if norm([v1 v2 v3])==0, then cube is not degenerate. means the only element of the nullspace is 0. 
+
+note: This turns out to be a higher degree because the nullspace is a constraint instead of objective.
+
 Computes the minimum eigenvalue of (gradX^T gradX) 
 	V			the vertices of the hex
 	k			optional, the degree of the SOS relaxation (default 4)
@@ -20,6 +24,7 @@ function [J, argmin, second_eig, diagnostics] = SOS_jacobian_single_hex_mod(V, k
     vars2 = [v1 v2 v3];
     vars = [u, v, w, v1, v2, v3];
 %     vars = [u, v, w];
+
 	Dphi = symbolic_trilinear_map_jacobian(V, [u,v,w]);
     Dphiv = Dphi*vars(4:6)'; % Dphi*v == 0
     vnorm_g = 1 - (v1^2+v2^2+v3^2); % |v|^2 <= 1
