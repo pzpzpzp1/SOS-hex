@@ -49,6 +49,7 @@ lowerbound = trace(vv) - 2*dot(Vnew(:),Vfit(:)) + dot(Vfit(:),Vfit(:));
 % NOTE: upperbound is only valid if rounding still satisfies the constraints, which it may not (demonstrated possible).
 upperbound = norm(Vfit(:)-Vnew(:))^2; 
 
+% result is not rank 1 but the eigenvalue ratio is ~100x. Rounding based on largest eigval fails to provide feasible solution (though it is non-degen for high enough epsilon)
 
 
 
